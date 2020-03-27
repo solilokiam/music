@@ -35,9 +35,8 @@ export const query = graphql`
                 width
               }
             }
-            album {
-              id
-            }
+            albumId
+            songId
           }
         }
       }

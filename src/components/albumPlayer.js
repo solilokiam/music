@@ -1,6 +1,6 @@
 import React from "react";
 
-const Player = ({ id, className }) => (
+const AlbumPlayer = ({ id, className }) => (
   <div className={className}>
     <iframe
       src={`https://open.spotify.com/embed/album/${id}`}
@@ -15,4 +15,4 @@ const Player = ({ id, className }) => (
   </div>
 );
 
-export default Player;
+export default AlbumPlayer;

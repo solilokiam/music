@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Player from "./player";
+import AlbumPlayer from "./albumPlayer";
+import SongPlayer from "./songPlayer";
 import Follow from "./follow";
 
 const BandContainer = styled.div`
@@ -34,12 +35,17 @@ const BandImage = styled.img`
   width: 100%;
 `;
 
-const BandPlayer = styled(Player)`
+const StyledAlbumPlayer = styled(AlbumPlayer)`
   margin-top: 15px;
   width: 100%;
 `;
 
-const Band = ({ artistId, albumId, image, why }) => {
+const StyledSongPlayer = styled(SongPlayer)`
+  margin-top: 15px;
+  width: 100%;
+`;
+
+const Band = ({ artistId, albumId, songId, image, why }) => {
   return (
     <BandContainer>
       <BandImage src={image} />
@@ -50,7 +56,8 @@ const Band = ({ artistId, albumId, image, why }) => {
         <Follow artistId={artistId} />
       </BandName>
       <p>{why}</p>
-      <BandPlayer id={albumId} />
+      {songId && <StyledSongPlayer id={songId} />}
+      {albumId && <StyledAlbumPlayer id={albumId} />}
     </BandContainer>
   );
 };

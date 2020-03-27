@@ -1,38 +1,9 @@
-const spotify = require("./spotify");
+const Spotify = require("./spotify");
 
-let clientId = null;
-let clientSecret = null;
-let token = null;
+let spotify = null;
 
 exports.onPreInit = (_, pluginOptions) => {
-  clientId = pluginOptions.id;
-  clientSecret = pluginOptions.secret;
-};
-
-const getArtistInfo = async artistId => {
-  if (token === null) {
-    token = await spotify.getAuthToken(clientId, clientSecret);
-  }
-
-  return spotify.getArtist(token, artistId);
-};
-
-const getAlbumInfo = async albumId => {
-  if (token === null) {
-    token = await spotify.getAuthToken(clientId, clientSecret);
-  }
-
-  return spotify.getAlbum(token, albumId);
-};
-
-const generateArtistInfo = async artistList => {
-  const artists = [];
-  const albums = [];
-  for (let i = 0; i < artistList.length; i++) {
-    artists.push(await getArtistInfo(artistList[i].artistId));
-    albums.push(await getAlbumInfo(artistList[i].albumId));
-  }
-  return { artists, albums };
+  spotify = new Spotify(pluginOptions.id, pluginOptions.secret);
 };
 
 exports.onCreateNode = async ({ node, actions }) => {
@@ -41,9 +12,13 @@ exports.onCreateNode = async ({ node, actions }) => {
     const spotifyInfo = [];
 
     for (let i = 0; i < node.artists.length; i++) {
-      const artist = await getArtistInfo(node.artists[i].artistId);
-      const album = await getAlbumInfo(node.artists[i].albumId);
-      spotifyInfo.push({ artist, album, why: node.artists[i].why });
+      const artist = await spotify.getArtist(node.artists[i].artistId);
+      spotifyInfo.push({
+        artist,
+        why: node.artists[i].why,
+        albumId: node.artists[i].albumId,
+        songId: node.artists[i].songId,
+      });
     }
 
     createNodeField({

@@ -45,7 +45,8 @@ const Top3 = ({ title, desc, artists }) => {
         {artists.map(artist => (
           <Band
             artistId={artist.artist.id}
-            albumId={artist.album.id}
+            albumId={artist.albumId}
+            songId={artist.songId}
             image={artist.artist.images[0].url}
             why={artist.why}
           />

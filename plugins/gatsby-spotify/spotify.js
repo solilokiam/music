@@ -1,72 +1,68 @@
 const axios = require("axios").default;
 const qs = require("qs");
 
-exports.getAuthToken = async (clientId, clientSecret) => {
-  const config = {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    auth: {
-      username: clientId,
-      password: clientSecret,
-    },
-  };
-  const data = {
-    grant_type: "client_credentials",
-  };
+function Spotify(clientId, clientSecret) {
+  this._clientId = clientId;
+  this._clientSecret = clientSecret;
+  this._token = null;
+}
 
-  try {
-    const response = await axios.post(
-      "https://accounts.spotify.com/api/token",
-      qs.stringify(data),
-      config
-    );
+Spotify.prototype = {
+  getAuthToken: async function() {
+    console.log(this);
+    const config = {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      auth: {
+        username: this._clientId,
+        password: this._clientSecret,
+      },
+    };
+    const data = {
+      grant_type: "client_credentials",
+    };
 
-    return response.data.access_token;
-  } catch (error) {
-    console.error(error);
-  }
+    try {
+      const response = await axios.post(
+        "https://accounts.spotify.com/api/token",
+        qs.stringify(data),
+        config
+      );
+
+      this._token = response.data.access_token;
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  },
+
+  getArtist: async function(artistId) {
+    if (this._token === null) {
+      await this.getAuthToken();
+    }
+
+    const config = {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this._token}`,
+      },
+    };
+
+    try {
+      const response = await axios.get(
+        `https://api.spotify.com/v1/artists/${artistId}`,
+        config
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };
 
-exports.getArtist = async (token, artistId) => {
-  const config = {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
-  try {
-    const response = await axios.get(
-      `https://api.spotify.com/v1/artists/${artistId}`,
-      config
-    );
-
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-exports.getAlbum = async (token, albumId) => {
-  const config = {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
-  try {
-    const response = await axios.get(
-      `https://api.spotify.com/v1/albums/${albumId}`,
-      config
-    );
-
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
+module.exports = Spotify;
