@@ -1,4 +1,4 @@
-name: New Sentry Release and Deploy to Heroku
+name: New Sentry Release
 on:
   push:
     branches:
@@ -10,11 +10,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@master
       - name: Create a Sentry.io release
-        uses: tclindner/sentry-releases-action@v1.0.0
+        uses: bjacobel/sentry-cli-action@master
+        with:
+          args: releases -o solilokiam -p music new ${{ github.sha }}
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: solilokiam
-          SENTRY_PROJECT: music
-        with:
-          tagName: ${{ github.ref }}
-          environment: prod
