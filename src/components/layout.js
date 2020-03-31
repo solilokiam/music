@@ -3,7 +3,7 @@ import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import reset from "styled-reset-advanced";
 import theme from "./themes/darkTheme";
 import Header from "./header";
-import SEO from './seo';
+import SEO from "./seo";
 
 const Main = styled.main`
   padding: 0 12px;

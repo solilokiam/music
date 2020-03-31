@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AlbumPlayer from "./albumPlayer";
 import SongPlayer from "./songPlayer";
 import Follow from "./follow";
+import ExternalLink from "./externalLink";
 
 const BandContainer = styled.div`
   display: flex;
@@ -51,7 +52,9 @@ const Band = ({ artistName, artistId, albumId, songId, image, why }) => {
       <BandImage src={image} />
       <BandName>
         <h3>
-          <a href={`https://open.spotify.com/artist/${artistId}`}>{artistName}</a>
+          <ExternalLink href={`https://open.spotify.com/artist/${artistId}`}>
+            {artistName}
+          </ExternalLink>
         </h3>
         <Follow artistId={artistId} />
       </BandName>

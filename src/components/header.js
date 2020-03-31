@@ -1,9 +1,9 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { Instagram } from "@styled-icons/boxicons-logos/Instagram";
 import { Github } from "@styled-icons/boxicons-logos/Github";
 import { GuitarAmp } from "@styled-icons/boxicons-solid/GuitarAmp";
+import ExternalLink from "./externalLink";
 
 const Head = styled.header`
   color: ${props => props.theme.headerColor};
@@ -46,8 +46,9 @@ const Header = ({ siteTitle }) => (
         </Link>
       </Title>
       <Social>
-        <Instagram size={40} title="Instagram" />
-        <Github size={40} title="Github" />
+        <ExternalLink href="http://www.github.com/solilokiam/music">
+          <Github size={40} title="Github" />
+        </ExternalLink>
       </Social>
     </NavBar>
   </Head>
