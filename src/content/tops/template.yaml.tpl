@@ -1,4 +1,5 @@
 name:
+date: '2020-01-01'
 desc:
 artists:
   - artistId:

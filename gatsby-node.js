@@ -5,7 +5,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const result = await graphql(
     `
       {
-        allTopsYaml(limit: 1000) {
+        allTopsYaml(sort: { fields: date, order: DESC }) {
           edges {
             node {
               id
@@ -21,7 +21,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const tops = result.data.allTopsYaml.edges;
-  const topsPerPage = 10;
+  const topsPerPage = 4;
   const numPages = Math.ceil(tops.length / topsPerPage);
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({

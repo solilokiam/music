@@ -19,7 +19,11 @@ export default ({ data, pageContext }) => {
 
 export const query = graphql`
   query IndexQuery($skip: Int!, $limit: Int!) {
-    allTopsYaml(limit: $limit, skip: $skip) {
+    allTopsYaml(
+      limit: $limit
+      skip: $skip
+      sort: { fields: date, order: DESC }
+    ) {
       nodes {
         id
         desc
