@@ -1,0 +1,15 @@
+name: 'Bandas en Castellano'
+desc: "La mayoria de música que escucho suele ser de origen anglosajon, pero hay muy muy buenas bandas que cantan en castellano"
+artists:
+  - artistId: 0o64rYzL3Mz1EEb69u5rBo
+    why: "Son de Barcelona y su ultimo trabajo es una obra de arte con letras reivindicativas. Un claro retrato de su generación"
+    songId: 1YmQ5cEJ9mi78crKH4tSLO
+    albumId: ''
+  - artistId: 1gfD6yqCdqjygTSdlkcb2y
+    why: "Post-Hardcode nacional. Riffs y letras de pura poesia y un ultimo trabajo con referencias a Blade Runner"
+    songId: 3KkGlIinLQX7GRcR4oWjEf
+    albumId: ''
+  - artistId: 37gLE2S4JxurgPNf1sx6HK
+    why: "Pura Intensidad."
+    songId: 5ULGIjYHMw64E3MhXx4yhe
+    albumId: ''
