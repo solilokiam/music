@@ -22,7 +22,10 @@ const TopList = styled.div`
   width: 100%;
   display: grid;
   /*Define our columns */
+  grid-template-columns: repeat(1, 1fr);
+  ${breakpoint("desktop")`
   grid-template-columns: repeat(3, 1fr);
+  `}
   grid-gap: 1em;
 `;
 
