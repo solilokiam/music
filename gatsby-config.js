@@ -42,5 +42,14 @@ module.exports = {
         secret: process.env.SPOTIFY_CLIENT_SECRET,
       },
     },
+    {
+      resolve: "gatsby-plugin-sentry",
+      options: {
+        dsn: "https://2267acaef0394cdfa5819eb7a1daa766@sentry.io/5183382",
+        environment: process.env.NODE_ENV,
+        enabled: (() =>
+          ["production", "stage"].indexOf(process.env.NODE_ENV) !== -1)(),
+      },
+    },
   ],
 };

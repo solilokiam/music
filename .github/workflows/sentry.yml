@@ -1,0 +1,20 @@
+name: New Sentry Release and Deploy to Heroku
+on:
+  push:
+    branches:
+      - master
+jobs:
+  createSentryRelease:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Create a Sentry.io release
+        uses: tclindner/sentry-releases-action@v1.0.0
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: solilokiam
+          SENTRY_PROJECT: music
+        with:
+          tagName: ${{ github.ref }}
+          environment: prod
