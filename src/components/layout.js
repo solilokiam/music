@@ -3,6 +3,7 @@ import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import reset from "styled-reset-advanced";
 import theme from "./themes/darkTheme";
 import Header from "./header";
+import SEO from './seo';
 
 const Main = styled.main`
   padding: 0 12px;
@@ -24,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
 const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <GlobalStyle />
+    <SEO />
     <Header />
     <Main>{children}</Main>
   </ThemeProvider>

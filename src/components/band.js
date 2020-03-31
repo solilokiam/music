@@ -45,13 +45,13 @@ const StyledSongPlayer = styled(SongPlayer)`
   width: 100%;
 `;
 
-const Band = ({ artistId, albumId, songId, image, why }) => {
+const Band = ({ artistName, artistId, albumId, songId, image, why }) => {
   return (
     <BandContainer>
       <BandImage src={image} />
       <BandName>
         <h3>
-          <a href={`https://open.spotify.com/artist/${artistId}`}>Spiritbox</a>
+          <a href={`https://open.spotify.com/artist/${artistId}`}>{artistName}</a>
         </h3>
         <Follow artistId={artistId} />
       </BandName>

@@ -2,32 +2,29 @@ require("dotenv").config();
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Solilokiam Music`,
+    description: `Mi musica favorita`,
+    author: `@solilokiam`,
+    titleTemplate: ``,
+    defaultDescription: `Un listado de la musica que me gusta`,
+    url: `https://music.solilokiam.com`,
+    twitterUsername: `solilokiam`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Mis Tops 3`,
-        short_name: `Top 3`,
+        name: `Solilokiam Music`,
+        short_name: `Music`,
         start_url: `/`,
         background_color: `#000`,
         theme_color: `#000`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-transformer-yaml`,

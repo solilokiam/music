@@ -9,7 +9,6 @@ function Spotify(clientId, clientSecret) {
 
 Spotify.prototype = {
   getAuthToken: async function() {
-    console.log(this);
     const config = {
       headers: {
         Accept: "application/json",
