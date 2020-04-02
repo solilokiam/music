@@ -51,5 +51,11 @@ module.exports = {
           ["production", "stage"].indexOf(process.env.NODE_ENV) !== -1)(),
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-50114202-2",
+      },
+    },
   ],
 };
